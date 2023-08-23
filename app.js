@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const axios = require("axios");
+require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +29,7 @@ app.post("/", (req, res) => {
       },
     ],
   };
+  const apiKey = process.env.API_KEY;
 
   app.post("/failure", (req, res) => {
     res.sendFile(__dirname + "/signup.html");
@@ -40,7 +42,7 @@ app.post("/", (req, res) => {
       headers: { Authorization: "Bearer <TOKEN>" },
       auth: {
         user: "TJ",
-        password: "32479f04c0dff12e17ed1843859b6a28-us17",
+        password: apiKey,
       },
     })
     .then(
